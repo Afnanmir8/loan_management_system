@@ -43,8 +43,9 @@ connectDB().then(async () => {
       await coll.dropIndex(utrIndex.name);
       console.log('Dropped old index: collections.utrNumber_1');
     }
-  } catch (err) {
-    console.warn('Could not verify/drop old utr index:', err.message || err);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : err;
+    console.warn('Could not verify/drop old utr index:', message);
   }
 
   app.listen(PORT, () => {

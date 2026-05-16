@@ -230,7 +230,7 @@ function SanctionModule() {
           <LoanSanctionForm
             loan={selectedLoan}
             onApprove={() => handleSanction(selectedLoan._id, true)}
-            onReject={(reason) => handleSanction(selectedLoan._id, false, reason)}
+            onReject={(reason: string) => handleSanction(selectedLoan._id, false, reason)}
             loading={loading}
           />
         </div>

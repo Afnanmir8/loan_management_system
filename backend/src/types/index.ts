@@ -1,3 +1,6 @@
+import { Types } from 'mongoose';
+import type { Request } from 'express';
+
 export type UserRole = 'admin' | 'sales' | 'sanction' | 'disbursement' | 'collection' | 'borrower';
 
 export type LoanStatus = 'PENDING' | 'APPROVED' | 'SANCTIONED' | 'DISBURSED' | 'CLOSED' | 'REJECTED';
@@ -27,7 +30,7 @@ export interface IBorrower {
 
 export interface ILoan {
   _id?: string;
-  borrowerId: string;
+  borrowerId: Types.ObjectId | string;
   status: LoanStatus;
   loanAmount: number;
   tenure: number; // in days
@@ -77,6 +80,6 @@ export interface JwtPayload {
   email: string;
 }
 
-export interface AuthenticatedRequest extends Express.Request {
+export interface AuthenticatedRequest extends Request {
   user?: JwtPayload;
 }

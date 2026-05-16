@@ -64,14 +64,14 @@ export default function BorrowerDashboard() {
           </button>
         </div>
 
-        {activeTab === 'applications' && <ApplicationsTab loans={loans} onRefresh={fetchLoans} />}
+        {activeTab === 'applications' && <ApplicationsTab loans={loans} />}
         {activeTab === 'apply' && <ApplyTab onSuccess={fetchLoans} />}
       </div>
     </div>
   );
 }
 
-function ApplicationsTab({ loans, onRefresh }: { loans: any[]; onRefresh: () => void }) {
+function ApplicationsTab({ loans }: { loans: any[] }) {
   return (
     <div>
       {loans.length === 0 ? (
@@ -294,14 +294,3 @@ function ApplyTab({ onSuccess }: { onSuccess: () => void }) {
   );
 }
 
-function getStatusColor(status: string): string {
-  const statusMap: { [key: string]: string } = {
-    PENDING: 'yellow',
-    APPROVED: 'blue',
-    SANCTIONED: 'green',
-    DISBURSED: 'cyan',
-    CLOSED: 'gray',
-    REJECTED: 'red',
-  };
-  return statusMap[status] || 'gray';
-}
